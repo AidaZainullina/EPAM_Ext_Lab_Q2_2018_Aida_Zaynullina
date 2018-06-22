@@ -1,0 +1,45 @@
+﻿
+@model string
+    @using Task01.Returns
+    @{
+        Layout = null;
+    }
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+    </head>
+    <body bgcolor="#FFDAB9">
+        <center>
+
+            <h2 style="color:#0000CD">Calculator</h2>
+            <h3 style="color:#0000FF">This calculator allows you to perform basic arithmetic operations with two assigned numbers as well as save the history of calculations.</h3>
+            <form action="Calculator" method="post">
+                <div>
+                    Please, enter the first number - X: <input type="text" name="x" /> <br />
+                    Please, enter the first number - Y: <input type="text" name="y" /> <br />
+                </div>
+                <div>
+                    Operations:<br />
+                    <input name="operation" type="radio" value="+" />+<br />
+                    <input name="operation" type="radio" value="-" />-<br />
+                    <input name="operation" type="radio" value="*" />*<br />
+                    <input name="operation" type="radio" value="/" />/<br />
+                </div>
+                <div>
+                    <input type="submit" value="Calculate" />
+                </div>
+                <div>
+                    <p style="color:#0000CD">Operations history:</p>
+                    <div>
+                        @foreach (var item in Html.GLog())
+                        {
+                            @item <br />
+                        }
+                    </div>
+                </div>
+            </form>
+        </center>
+    </body>
+</html>
