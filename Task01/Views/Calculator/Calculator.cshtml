@@ -13,16 +13,16 @@
     <body bgcolor="#FFDAB9">
         <center>
 
-            <h2 style="color:#0000CD">Calculator</h2>
+            <h2 style="color:#0000CD">Calculator</h2><!--really? лучше перенести в CSS((-->
             <h3 style="color:#0000FF">This calculator allows you to perform basic arithmetic operations with two assigned numbers as well as save the history of calculations.</h3>
             <form action="Calculator" method="post">
                 <div>
-                    Please, enter the first number - X: <input type="text" name="x" /> <br />
+                    Please, enter the first number - X: <input type="text" name="x" /> <br /><!--лучше для сообщений использовать ресурсы (.resx), чтобы можно было использовать строки-сообщений в разных местах. -->
                     Please, enter the first number - Y: <input type="text" name="y" /> <br />
                 </div>
                 <div>
                     Operations:<br />
-                    <input name="operation" type="radio" value="+" />+<br />
+                    <input name="operation" type="radio" value="+" />+<br /><!--вот здесь лучше откуда-то извне брать значения, а не хардкодить.-->
                     <input name="operation" type="radio" value="-" />-<br />
                     <input name="operation" type="radio" value="*" />*<br />
                     <input name="operation" type="radio" value="/" />/<br />

@@ -24,7 +24,7 @@
             float total = 0;
             switch (operation)
             {
-                case "+":
+                case "+"://todo pn hardcode у тебя здесь и во вьюшках повторяются операции. Можно было бы их запихнуть в какой-нибудь enum, чтобы они всегда были собраны в одном месте.
                     total = this.Sum(x, y);
                     break;
                 case "-":
