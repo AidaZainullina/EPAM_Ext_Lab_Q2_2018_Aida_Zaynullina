@@ -19,7 +19,7 @@ public class Task13
             int programWorks = 1;
             while (programWorks == 1)
             {
-                Console.WriteLine("Enter the number of measurements type:");
+                Console.WriteLine("Enter the number of measurements:");
                 double numberMeasurements = CheckOfNumber();
                 Tests(n, numberMeasurements);
 
