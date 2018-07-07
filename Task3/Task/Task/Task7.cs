@@ -30,7 +30,7 @@ public class Task7
                 Console.WriteLine("Min value of sorted massive is: " + array[0]);
                 Console.WriteLine("Max value of sorted massive is: " + array[array.Length - 1]);
 
-                Console.WriteLine("If you want to repeat the task, press 1, back to menu 0:\n");
+                Console.WriteLine("If you want to repeat the task, press 1, back to menu press any other button:\n");
                 int.TryParse(Console.ReadLine(), out programWorks);
                 if (programWorks == 1)
                 {

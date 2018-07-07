@@ -28,7 +28,7 @@
                 Sum(array);
                 Console.WriteLine("Sum of non-negarive elements is: {0}", summ);
 
-                Console.WriteLine("If you want to repeat the task, press 1, back to menu 0:\n");
+                Console.WriteLine("If you want to repeat the task, press 1, back to menu press any other button:\n");
                 int.TryParse(Console.ReadLine(), out programWorks);
                 if (programWorks == 1)
                 {

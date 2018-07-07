@@ -21,7 +21,7 @@ public class Task2
                 Console.ReadKey();
                 Print(n, '*');
 
-                Console.WriteLine("If you want to repeat the task, press 1, back to menu 0:\n");
+                Console.WriteLine("If you want to repeat the task, press 1, back to menu press any other button:\n");
                 int.TryParse(Console.ReadLine(), out programWorks);
                 if (programWorks == 1)
                 {

@@ -32,7 +32,7 @@ public class Task5
 
                 Console.WriteLine("Sum of all numbers less than {0}, multiples of {1} or {2} = {3} ", maxNumber, firstNumber, secondNumber, sum);
 
-                Console.WriteLine("If you want to repeat the task, press 1, back to menu 0:\n");
+                Console.WriteLine("If you want to repeat the task, press 1, back to menu press any other button:\n");
                 int.TryParse(Console.ReadLine(), out programWorks);
                 if (programWorks == 1)
                 {

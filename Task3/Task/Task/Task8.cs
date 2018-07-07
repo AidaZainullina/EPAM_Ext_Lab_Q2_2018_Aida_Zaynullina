@@ -17,7 +17,6 @@
             int programWorks = 1;
             while (programWorks == 1)
             {
-                n = Check();
                 int[,,] array3D = new int[n, n, n];
                 int max = 1000;
                 int min = -1000;
@@ -28,28 +27,13 @@
                 Console.WriteLine("Your change massive is:");
                 PrintArray(array3D);
 
-                Console.WriteLine("If you want to repeat the task, press 1, back to menu 0:\n");
+                Console.WriteLine("If you want to repeat the task, press 1, back to menu press any other button:\n");
                 int.TryParse(Console.ReadLine(), out programWorks);
                 if (programWorks == 1)
                 {
                     Console.Clear();
                 }
             }
-        }
-        /// <summary>
-        /// Checking numbers for non-zero
-        /// </summary>
-        /// <returns></returns>
-        public static int Check()
-        {
-            int.TryParse(Console.ReadLine(), out int N);
-            while (N <= 0)
-            {
-                Console.WriteLine("Enter a positive non-zero value");
-                int.TryParse(Console.ReadLine(), out N);
-            }
-
-            return N;
         }
         /// <summary>
         /// Doing random
