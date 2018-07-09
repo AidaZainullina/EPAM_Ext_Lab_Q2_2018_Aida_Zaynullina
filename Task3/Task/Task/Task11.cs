@@ -20,8 +20,8 @@ public class Task11
                 string str = Console.ReadLine();
                 AvgLengthOfWord(str);
 
-                Console.WriteLine("If you want to repeat the task, press 1, back to menu press any other button:\n");
-                int.TryParse(Console.ReadLine(), out programWorks);
+                Console.WriteLine("If you want to repeat the task, press 1, back to menu press any other button:\n");//todo pn хардкод у тебя это сообщение дублируется многократно. Все строки-сообщения - в ресурсы.
+				int.TryParse(Console.ReadLine(), out programWorks);
                 if (programWorks == 1)
                 {
                     Console.Clear();
@@ -34,9 +34,9 @@ public class Task11
         /// <param name="str">string</param>
         public static void AvgLengthOfWord(string str)
         {
-            string[] words = str.Split(new[] { ' ', '-', '!', '?', ':', ',', '.' }, StringSplitOptions.RemoveEmptyEntries);
-            double avgLength = words.Aggregate(0, (count, nextWord) => count += nextWord.Length) / words.Length;
-            Console.WriteLine("Average length of the words = {0}", avgLength);
+            string[] words = str.Split(new[] { ' ', '-', '!', '?', ':', ',', '.' }, StringSplitOptions.RemoveEmptyEntries);//todo pn хардкод
+            double avgLength = words.Aggregate(0, (count, nextWord) => count += nextWord.Length) / words.Length;//todo pn упало здесь
+            Console.WriteLine("Average length of the words = {0}", avgLength);//todo pn чот он как-то неправильно считает среднюю длину слова
         }
     }
 }

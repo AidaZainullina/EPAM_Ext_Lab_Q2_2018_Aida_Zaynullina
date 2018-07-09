@@ -24,7 +24,7 @@ public class Task5
 
                 for (i = 0.0; i < maxNumber; i++)
                 {
-                    if ((i % firstNumber == 0) ^ (i % secondNumber == 0))
+                    if ((i % firstNumber == 0) ^ (i % secondNumber == 0))//todo pn чот не то. || наверно?
                     {
                         sum += i;
                     }
