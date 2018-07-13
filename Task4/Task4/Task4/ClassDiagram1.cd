@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Task4.Manager">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAISAAAAAAAAAgEAIAAAAIAAAVABAgCEAECgARBgA=</HashCode>
+      <FileName>Manager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Programmer" />
+      <Property Name="Task" />
+      <Property Name="TestResult" />
+      <Property Name="Report" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Task4.TestAssessment">
+    <Position X="7.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAIAAAAAAAAAAIAAAAAAAAABgA=</HashCode>
+      <FileName>TestAssessment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Report" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Task4.Task">
+    <Position X="7.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAQAAAAAAAAACgACAAAAAAAAgAAAAACAAAAAA=</HashCode>
+      <FileName>Task.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TestResult" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Task4.Role">
+    <Position X="7.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAIAAAEBAAAAAAAAACAAgA=</HashCode>
+      <FileName>Role.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Admin" />
+      <Property Name="Manager" />
+      <Property Name="Programmer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Task4.Report">
+    <Position X="7.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAQAAAAAAAAAAAAAAAAAAIAAAAAAAAgAA=</HashCode>
+      <FileName>Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task4.Programmer">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAACAAACAAAABgEAAEAAAAAAAVABAgAEAEAgAIAgA=</HashCode>
+      <FileName>Programmer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Task" />
+      <Property Name="TestAssessment" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Task4.Admin">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIQAAAAEAAAAAAAKABAEBAAgAEAAAAAAAgA=</HashCode>
+      <FileName>Admin.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Manager" />
+      <Property Name="Programmer" />
+      <Property Name="Task" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
