@@ -6,9 +6,9 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class OperationsWithUsers<T> : IBaseService<T> where T : class, new()
+    public class OperationsWithUsers<T> : IBaseService<T> where T : class, new() //todo pn лучше UserService
     {
-        private T GetUser;
+        private T GetUser; //todo pn странное название для переменной
 
         public List<User> BaseOfUsers = new List<User>()
         {
@@ -80,8 +80,8 @@
 
         public bool Save(T entity = default)
         {
-            if (entity as User == null)
-            {
+            if (entity as User == null)//todo pn entity as User дублируется
+			{
                 return false;
             }
             else
