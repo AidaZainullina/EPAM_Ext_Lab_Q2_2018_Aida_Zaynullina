@@ -18,20 +18,20 @@
             bool programWorks = true;
             while (programWorks)
             {
-                Console.WriteLine("0: Exit");
-                Console.WriteLine("1: to sort the words we have set");
-                Console.WriteLine("2: to sort the words you will enter\n");
+                Console.WriteLine("0: Exit");//todo pn хардкод в части 0
+				Console.WriteLine("1: to sort the words we have set"); //todo pn хардкод в части 1
+				Console.WriteLine("2: to sort the words you will enter\n");//todo pn хардкод в части 2
 
-                switch (Console.ReadLine())
+				switch (Console.ReadLine())
                 {
-                    case "0":
+                    case "0"://todo pn хардкод
                         programWorks = false;
                         break;
-                    case "1":
-                        SortingOfFixedWords();
+                    case "1"://todo pn хардкод
+						SortingOfFixedWords();
                         break;
-                    case "2":
-                        SortingOfInputWords();
+                    case "2"://todo pn хардкод
+						SortingOfInputWords();
                         break;
                     default:
                         {

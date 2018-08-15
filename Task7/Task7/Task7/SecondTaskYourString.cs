@@ -27,8 +27,8 @@
 
         public static void SplitMethod(string str)
         {
-            string[] words = str.Split(new[] { ' ', '-', '!', '?', ':', ',', '.' }, StringSplitOptions.RemoveEmptyEntries);
-            Console.WriteLine("Your string is: \n");
+            string[] words = str.Split(new[] { ' ', '-', '!', '?', ':', ',', '.' }, StringSplitOptions.RemoveEmptyEntries);//todo pn хардкод. Есть Char.IsSeparator
+			Console.WriteLine("Your string is: \n");
             for (int i = 0; i < words.Length; i++)
             {
                 Console.WriteLine(words[i]);

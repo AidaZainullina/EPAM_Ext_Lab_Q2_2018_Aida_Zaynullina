@@ -16,14 +16,14 @@
                 Console.WriteLine(Task7.Properties.Resource1.Task2);
                 switch (Console.ReadLine())
                 {
-                    case "0":
-                        programmWorks = false;
+                    case "0"://todo pn хардкод
+						programmWorks = false;
                         break;
-                    case "1":
-                        UseYourString();
+                    case "1"://todo pn хардкод
+						UseYourString();
                         break;
-                    case "2":
-                        UseOurString();
+                    case "2"://todo pn хардкод
+						UseOurString();
                         break;
                     default:
                         {
