@@ -103,7 +103,7 @@ namespace UserTests
 
             userRepository.AddData();
 
-            connectionString = @"Data Source=LAPTOP-4GR3EOJP\SQLEXPRESS_AIDA;Initial Catalog=Database1;Integrated Security=True";
+            connectionString = @"Data Source=LAPTOP-4GR3EOJP\SQLEXPRESS_AIDA;Initial Catalog=Database1;Integrated Security=True";//todo pn аналогично
 
             List<UserModel> users = userRepository.GetAll();
 

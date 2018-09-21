@@ -21,7 +21,7 @@ namespace KnowledgeManagementSystem.DAL.Repositories
         {
             try
             {
-                connectionString = @"Data Source=LAPTOP-4GR3EOJP\SQLEXPRESS_AIDA;Initial Catalog=Database1;Integrated Security=True";
+                connectionString = @"Data Source=LAPTOP-4GR3EOJP\SQLEXPRESS_AIDA;Initial Catalog=Database1;Integrated Security=True";//todo pn вынести в конфиг
 
                 string sqlRequest = string.Format("DELETE FROM Database1.[dbo].[User] WHERE UserId = {0}", id);
 
@@ -55,7 +55,7 @@ namespace KnowledgeManagementSystem.DAL.Repositories
             {
                 UserModel User = new UserModel();
 
-                connectionString = @"Data Source=LAPTOP-4GR3EOJP\SQLEXPRESS_AIDA;Initial Catalog=Database1;Integrated Security=True";
+                connectionString = @"Data Source=LAPTOP-4GR3EOJP\SQLEXPRESS_AIDA;Initial Catalog=Database1;Integrated Security=True";//todo pn саму не смутило, что нужно постоянно копировать строку?
 
                 using (var connection = new SqlConnection(connectionString))
                 {
@@ -70,7 +70,7 @@ namespace KnowledgeManagementSystem.DAL.Repositories
                     if (dr.Read())
                     {
 
-                        User.UserId = (int)dr["UserId"];
+                        User.UserId = (int)dr["UserId"];//todo pn лучше наименование стобцов вынести в константы, так будет проще рефакторить в будущем
                         User.UserName = dr["UserName"].ToString();
                         User.UserPassword = dr["UserPassword"].ToString();
                         User.UserRole = (UserRoleID)dr["UserRole"];
@@ -215,7 +215,7 @@ namespace KnowledgeManagementSystem.DAL.Repositories
             {
                 connection2.Open();
                 var AddCommand = connection2.CreateCommand();
-                AddCommand.CommandText = "INSERT INTO Database1.[dbo].[User] values(1, 'Ivan', '11111',  1, 'imail.ru'),(2, 'Petrov', '12324567',  3, 'p@gml.com'),(3, 'Sidorov', '22222',  2, 's@ml.ru'),(4, 'Popov', '123',  1, 'p@x.ru'),(5, 'Chirkova', '123',  2, 'c@ml.ru'),(6, 'Mihaylova', '125543',  3, 'm@yae.ru'),(7, 'Kolchin', '1I8Y623',  3, 'ko@ma.ru'),(8, 'Voron', '1231234554',  3, 'vo@ml.ru'),(9, 'Charikova', '1278753',  2, 'ch@l.com'),(10, 'Gluchova', '178768723',  3, 'g@l.ru')";
+                AddCommand.CommandText = "INSERT INTO Database1.[dbo].[User] values(1, 'Ivan', '11111',  1, 'imail.ru'),(2, 'Petrov', '12324567',  3, 'p@gml.com'),(3, 'Sidorov', '22222',  2, 's@ml.ru'),(4, 'Popov', '123',  1, 'p@x.ru'),(5, 'Chirkova', '123',  2, 'c@ml.ru'),(6, 'Mihaylova', '125543',  3, 'm@yae.ru'),(7, 'Kolchin', '1I8Y623',  3, 'ko@ma.ru'),(8, 'Voron', '1231234554',  3, 'vo@ml.ru'),(9, 'Charikova', '1278753',  2, 'ch@l.com'),(10, 'Gluchova', '178768723',  3, 'g@l.ru')"; //todo pn такое лучше не хардкодить в DAL, а настраивать в проекте с тестами
             }
 
             return true;
