@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace Task10
 {
-    public class TestModel
+    public class UserModel
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public int? Time { get; set; }
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
+        public Role UserRole { get; set; }
+
+        public List<TestModel> Tasks { get; set; }
     }
 }
