@@ -1,9 +1,10 @@
 ﻿CREATE TABLE [User]
 (
-	[UserId] INT NOT NULL PRIMARY KEY, 
-    [UserName] NCHAR(100) NULL, 
-    [UserPassword] NCHAR(100) NOT NULL, 
-    [UserRole] INT NULL,
-    [UserEmail] NCHAR(100) NOT NULL
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Name] NCHAR(100) NULL, 
+    [Password] NCHAR(100) NOT NULL, 
+    [Role] INT NOT NULL FOREIGN KEY([Id]) REFERENCES Role (Id),
+    [Email] NCHAR(100) NOT NULL, 
+    [Test] NCHAR(10) NOT NULL
 )
 

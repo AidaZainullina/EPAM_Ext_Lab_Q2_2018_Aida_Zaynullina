@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Task10
 {
-    public class ReportModel
+    public class Report
     {
+        public int id { get; set; }
+         
+        public 
     }
 }

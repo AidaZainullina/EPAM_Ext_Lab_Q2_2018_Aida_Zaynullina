@@ -61,6 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="NewFolder1\User.sql" />
+    <Build Include="NewFolder1\Question.sql" />
+    <Build Include="NewFolder1\Role.sql" />
+    <Build Include="NewFolder1\Test.sql" />
+    <Build Include="NewFolder1\UserTestLog.sql" />
+    <Build Include="NewFolder1\Variant.sql" />
+    <Build Include="NewFolder1\VariantType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="KnowledgeBase.publish.xml" />
