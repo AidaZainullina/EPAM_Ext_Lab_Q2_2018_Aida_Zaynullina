@@ -156,6 +156,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,8 +165,17 @@
     <Compile Include="Models\Account\RegisterUserModel.cs" />
     <Compile Include="Models\Account\UserLoginModel.cs" />
     <Compile Include="Models\Account\UserPasswordViewModel.cs" />
+    <Compile Include="Models\Page\IndexViewModel.cs" />
+    <Compile Include="Models\Page\PageInfo.cs" />
+    <Compile Include="Models\Question\QuestionPageInformation.cs" />
+    <Compile Include="Models\Question\QuestionViewModel.cs" />
+    <Compile Include="Models\Question\StartingTestQuestionViewModel.cs" />
+    <Compile Include="Models\Test\IndexTestViewModel.cs" />
+    <Compile Include="Models\Test\TestResultViewModel.cs" />
+    <Compile Include="Models\Test\TestViewModel.cs" />
     <Compile Include="Models\User\UserCreateViewModel.cs" />
     <Compile Include="Models\User\UserEditViewModel.cs" />
+    <Compile Include="Models\Variant\VariantViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +219,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\HomePage\UserInfo.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\TestStarting.cshtml" />
+    <Content Include="Views\Test\TestResult.cshtml" />
+    <Content Include="Views\Test\TestCheckAnswer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

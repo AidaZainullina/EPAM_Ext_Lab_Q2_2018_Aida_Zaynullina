@@ -1,39 +1,39 @@
-﻿namespace KnowledgeSystemDAL.Repositories.Test
+﻿namespace KnowledgeSystemDAL.Repositories.Variant
 {
-    using System.Data;
-    using System.Data.SqlClient;
+    using KnowledgeSystemDAL.Repositories.Question;
     using System;
     using System.Collections.Generic;
-    using KnowledgeSystemDAL.Repositories.Question;
+    using System.Data.SqlClient;
+    using System.Data;
     using KnowledgeSystemDAL.Models;
 
-    public  class TestRepository : ITestRepository
+    public class VariantRepository : IVariantRepository
     {
         private readonly string connectionString = @"Data Source=LAPTOP-4GR3EOJP\SQLEXPRESS_AIDA;Initial Catalog=KnowledgeManagementSystemDB;User ID=sa;Password=12345678";
 
         public SqlConnection connect = null;
 
-        public TestRepository()
+        public VariantRepository()
         {
             connectionString = @"Data Source=LAPTOP-4GR3EOJP\SQLEXPRESS_AIDA;User ID=sa;Password=12345678;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";//ConfigurationManager.ConnectionStrings.ToString();
             connect = new SqlConnection(connectionString);
         }
 
         readonly QuestionRepository qr = new QuestionRepository();
-        
+
         public static DateTime date = new DateTime();
         DateTime duration = date.AddMinutes(30);
-        
+
 
         public bool AddData()
         {
             throw new NotImplementedException();
         }
-        
-        
+
+
         public int GetCount()
         {
-            string sql = string.Format("SELECT Id FROM KnowledgeManagementSystemDB.[dbo].[Test]");
+            string sql = string.Format("SELECT Id FROM KnowledgeManagementSystemDB.[dbo].[Variant]");
             using (SqlCommand cmd = new SqlCommand(sql, connect))
             {
                 connect.Open();
@@ -55,7 +55,7 @@
         {
             try
             {
-                string sqlRequest = string.Format("DELETE FROM KnowledgeManagementSystemDB.[dbo].[Test] WHERE Id = @Id");
+                string sqlRequest = string.Format("DELETE FROM KnowledgeManagementSystemDB.[dbo].[Variant] WHERE Id = @Id");
 
                 using (var connection = new SqlConnection(connectionString))
                 {
@@ -81,30 +81,30 @@
             }
         }
 
-        public Test Get(int id = default)
+        public Variant Get(int id = default)
         {
             try
             {
-                Test test = new Test();
+                Variant variant = new Variant();
 
                 using (var connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand();
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = string.Format("SELECT * FROM KnowledgeManagementSystemDB.dbo.[Test] WHERE Id = @Id");
+                    command.CommandText = string.Format("SELECT * FROM KnowledgeManagementSystemDB.dbo.[Variant] WHERE Id = @Id");
                     SqlParameter IdParam = new SqlParameter("@IdParam", id);
                     command.Parameters.Add(IdParam);
 
                     IDataReader dr = command.ExecuteReader();
                     if (dr.Read())
                     {
-                        test.Id = (int)dr["Id"];
-                        test.Name = dr["Name"].ToString();
-                        test.Duration = duration;
-                        test.Description = dr["Description"].ToString();
-                        test.UserId = (int)dr["UserId"];
-                        return test;
+                        variant.Id = (int)dr["Id"];
+                        variant.Text = dr["Text"].ToString();
+                        variant.IsRight = (int)dr["IsRight"];
+                        variant.QuestionId = (int)dr["QuestionId"];
+
+                        return variant;
                     }
                     else return null;
                 }
@@ -115,71 +115,68 @@
             }
         }
 
-        public List<Test> GetAllByQuestionId(int QuestionId)
+        public List<Variant> GetAllByQuestionId(int QuestionId)
         {
-            List<Test> AllTests = new List<Test>();
+            List<Variant> AllVariants = new List<Variant>();
 
             using (var connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand();
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM KnowledgeManagementSystemDB.[dbo].[Test] where QuestionId = @QuestionId";
+                command.CommandText = "SELECT * FROM KnowledgeManagementSystemDB.[dbo].[Variant] where QuestionId = @QuestionId";
                 SqlParameter IdParam = new SqlParameter("@QuestionId", QuestionId);
-                command.Parameters.Add(QuestionId);
+                command.Parameters.Add(IdParam);
 
                 using (IDataReader dr = command.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        Test test = new Test
+                        Variant variant = new Variant
                         {
                             Id = (int)dr["Id"],
-                            Name = dr["Name"].ToString(),
-                            Duration = duration,
-                            UserId = (int)dr["UserId"],
-                            Description = dr["Description"].ToString()
-                    };
+                            Text = dr["Text"].ToString(),
+                            IsRight = (int)dr["IsRight"],
+                            QuestionId = (int)dr["QuestionId"]
+                        };
 
-                        AllTests.Add(test);
+                        AllVariants.Add(variant);
                     }
                 }
-                return AllTests;
+                return AllVariants;
             }
         }
 
-        public List<Test> GetAll()
+        public List<Variant> GetAll()
         {
-            List<Test> AllTests = new List<Test>();
+            List<Variant> AllVariants = new List<Variant>();
 
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 IDbCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM KnowledgeManagementSystemDB.[dbo].[Test]";
+                command.CommandText = "SELECT * FROM KnowledgeManagementSystemDB.[dbo].[Variant]";
 
                 using (IDataReader dr = command.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        Test test = new Test
+                        Variant variant = new Variant
                         {
                             Id = (int)dr["Id"],
-                            Name = dr["Name"].ToString(),
-                            Duration = duration,
-                            UserId = (int)dr["UserId"],
-                            Description = dr["Description"].ToString()
+                            Text = dr["Text"].ToString(),
+                            IsRight = (int)dr["IsRight"],
+                            QuestionId = (int)dr["QuestionId"]
                         };
-                        //test.Questions = qr.Get((int)dr["TestId"]); //Список вопросов
 
-                        AllTests.Add(test);
+                        AllVariants.Add(variant);
                     }
                 }
-                return AllTests;
+                return AllVariants;
             }
         }
 
-        public bool Save(Test entity)
+        public bool Save(Variant entity)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -190,15 +187,14 @@
 
                 if (this.Get(entity.Id) != null)
                 {
-                    command.CommandText = string.Format("UPDATE KnowledgeManagementSystemDB.dbo.[Test] SET " +
-                    "Name = '{0}', " +
-                    "Durations = '{1}', " +
-                    "Description = '{2}', " +
-                    "UserId = {3}, " +
+                    command.CommandText = string.Format("UPDATE KnowledgeManagementSystemDB.dbo.[Variant] SET " +
+                    "Text = '{0}', " +
+                    "IsRight = {1}, " +
+                    "QuestionId = {2}, "  +
                     "WHERE Id = {4}",
-                    entity.Name,
-                    duration/*entity.Duration*/,
-                    entity.Description,
+                    entity.Text,
+                    entity.IsRight,
+                    entity.QuestionId,
                     entity.Id
                     );
 
@@ -215,16 +211,16 @@
                 }
                 else
                 {
-                    command.CommandText = string.Format("INSERT INTO  KnowledgeManagementSystemDB.[dbo].[Test]" +
-                    "(Name = '{0}', " +
-                    "Durations = '{1}', " +
-                    "Description = '{2}', " +
-                    "UserId = {3}) " +
+                    command.CommandText = string.Format("INSERT INTO  KnowledgeManagementSystemDB.[dbo].[Va]" +
+                    "(Text = '{0}', " +
+                    "IsRight = {1}, " +
+                    "QuestionId = {2}, " +
+                    "Id = {3}," +
                     "VALUES ('{0}', '{1}', '{2}', '{3}')",
-                    entity.Name,
-                    duration,
-                    entity.Description,
-                    entity.UserId);
+                    entity.Text,
+                    entity.IsRight,
+                    entity.QuestionId,
+                    entity.Id);
 
                     var result = command.ExecuteNonQuery();
 
@@ -240,7 +236,7 @@
             }
         }
 
-        public Test Get(string name)
+        public Variant Get(string name)
         {
             throw new NotImplementedException();
         }

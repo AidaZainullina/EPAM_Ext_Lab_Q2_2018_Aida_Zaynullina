@@ -6,7 +6,7 @@
     using System.Data.SqlClient;
     using KnowledgeSystemDAL.Models;
 
-    class QuestionRepository
+    public class QuestionRepository
     {
         public SqlConnection connection = null;
 
@@ -68,7 +68,6 @@
                         question.Id = (int)dr["Id"];
                         question.TestID = (int)dr["Id"];
                         question.Text = (string)dr["Text"];
-                        question.Success = (bool)dr["Success"];
                         return question;
                     }
                     else return null;
@@ -98,8 +97,38 @@
                         {
                             Id = (int)dr["Id"],
                             TestID = (int)dr["Id"],
-                            Text = (string)dr["Text"],
-                            Success = (bool)dr["Success"]
+                            Text = (string)dr["Text"]
+                        };
+
+                        AllQuestions.Add(question);
+                    }
+                }
+                return AllQuestions;
+            }
+        }
+
+        public List<Question> GetAllQuestionByTestId(int TestId)
+        {
+            List<Question> AllQuestions = new List<Question>();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand();
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT * FROM KnowledgeManagementSystemDB.[dbo].[Question] where TestId = @TestId";
+                SqlParameter IdParam = new SqlParameter("@TestId", TestId);
+                command.Parameters.Add(IdParam);
+
+                using (IDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Question question = new Question
+                        {
+                            Id = (int)dr["Id"],
+                            TestID = (int)dr["Id"],
+                            Text = (string)dr["Text"]
                         };
 
                         AllQuestions.Add(question);
@@ -124,12 +153,10 @@
                     "Id = '{0}', " + 
                     "TestId = '{1}', " +
                     "Text = '{2}', " +
-                    "Success = '{3}', " +
-                    "WHERE Id = {4}",
+                    "WHERE Id  = {3} ",
                     entity.Id,
                     entity.TestID,
                     entity.Text,
-                    entity.Success,
                     entity.Id);
 
                     var result = command.ExecuteNonQuery();
@@ -148,13 +175,11 @@
                     command.CommandText = string.Format("INSERT INTO  KnowledgeBase.[dbo].[Question]" +
                    "(Id, " +
                     "TestId, " +
-                    "Text, " +
-                    "Success) " +
-                    "VALUES ('{0}', '{1}', '{2}', '{3}')",
+                    "Text) " +
+                    "VALUES ('{0}', '{1}', '{2}')",
                     entity.Id,
                     entity.TestID,
-                    entity.Text,
-                    entity.Success);
+                    entity.Text);
 
                     var result = command.ExecuteNonQuery();
 

@@ -1,0 +1,21 @@
+﻿@using System.Threading
+@{
+    ViewBag.Title = "UserInfo";
+}
+
+<h2>UserInfo</h2>
+
+User:
+@{
+    if (!User.Identity.IsAuthenticated)
+    {
+        <text>Not authenticated</text>
+    }
+    else
+    {
+        <text>@User.Identity.Name</text>
+        @Html.ActionLink("List of Tests", "Index", "Test")
+    }
+}
+@Html.ActionLink("Registration", "Register", "Account")
+@Html.ActionLink("Login", "Login", "Account")

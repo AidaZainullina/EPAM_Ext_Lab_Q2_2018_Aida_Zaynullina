@@ -39,6 +39,8 @@
             }
         }
 
+
+        [Authorize(Roles = "Admin, Manager, Programmer")]
         public ActionResult Edit(int id)
         {
             return this.View(Mapper.Map<User, UserEditViewModel>(this.userRepository.Get(id)));
@@ -58,7 +60,7 @@
             }
         }
 
-
+        
         public ActionResult Delete(int id)
         {
             if (id == null)

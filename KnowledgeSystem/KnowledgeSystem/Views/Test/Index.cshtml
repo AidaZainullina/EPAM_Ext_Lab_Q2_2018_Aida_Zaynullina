@@ -1,0 +1,20 @@
+﻿@model KnowledgeSystem.Models.Page.IndexViewModel
+@using KnowledgeSystem.Models
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <td>TestId</td>
+        <td>Test</td>
+    </tr>
+    @foreach (var item in Model.Tests)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@Html.ActionLink(item.Description, "TestStarting", new { testId = item.Id })</td>
+        </tr>
+    }
+</table>
+<br />

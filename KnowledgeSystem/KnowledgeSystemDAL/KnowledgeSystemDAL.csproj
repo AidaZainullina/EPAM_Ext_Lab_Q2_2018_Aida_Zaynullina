@@ -49,6 +49,7 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Variant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\BaseRepository.cs" />
     <Compile Include="Repositories\Base\IBaseRepository.cs" />
@@ -62,6 +63,8 @@
     <Compile Include="Repositories\UserTestLog\UserTestLogRepository.cs" />
     <Compile Include="Repositories\User\IUserRepository.cs" />
     <Compile Include="Repositories\User\UserRepository.cs" />
+    <Compile Include="Repositories\Variant\IVariantRepository.cs" />
+    <Compile Include="Repositories\Variant\VariantRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
