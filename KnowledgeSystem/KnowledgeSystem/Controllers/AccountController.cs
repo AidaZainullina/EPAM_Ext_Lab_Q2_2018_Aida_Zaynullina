@@ -22,13 +22,20 @@
         public ActionResult LogIn(UserLoginModel model, string ReturnUrl)
         {
             var user = userRepository.Get(model.Name);
+
             if (user != null)
             {
-                if (!string.IsNullOrEmpty(model.Name) && !string.IsNullOrEmpty(model.Password))
+                if (model.Password.Equals((user.Password)))
                 {
                     FormsAuthentication.SetAuthCookie(model.Name, false);
 
-                    return RedirectToAction("Index", "Home");
+                    Session["UserID"] = user.Id;
+
+                    return RedirectToAction("Index", "Test");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "There is no user with that name or password..");
                 }
             }
             else
@@ -48,19 +55,25 @@
         public ActionResult Register(RegisterUserModel model)
         {
             var user = userRepository.Get(model.Name);
+
             if (user.Name == null)
             {
                 if (model.Password == model.ConfirmedPassword)
                 {
                     User ragistrationUser = new User();
-                    int userRole = new int();
-                    //userRole.Default();
-                    ragistrationUser.Id = userRepository.GetCount() + 1;
+                    
                     ragistrationUser.Name = model.Name;
+
                     ragistrationUser.Password = model.Password;
-                    ragistrationUser.Role = userRole;
+
+                    ragistrationUser.Email = model.Email;
+
+                    ragistrationUser.Role = 2;
+
                     userRepository.Save(ragistrationUser);
+
                     FormsAuthentication.SetAuthCookie(model.Name, false);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else

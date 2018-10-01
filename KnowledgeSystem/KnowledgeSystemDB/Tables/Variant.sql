@@ -4,5 +4,6 @@
     [IsRight] INT NOT NULL, 
     [Text] NCHAR(100) NULL, 
     [Score] INT NULL,
-	[QuestionId] int foreign key (QuestionId) references dbo.Question (Id)
+	[QuestionId] int 
+		constraint [FK_Variant_Question] foreign key (QuestionId) references dbo.Question (Id)
 )

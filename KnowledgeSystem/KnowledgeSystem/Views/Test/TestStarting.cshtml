@@ -1,5 +1,5 @@
 ﻿@model KnowledgeSystem.Models.Question.StartingTestQuestionViewModel
-@using KnowledgeSystem.Models
+
 @{
     ViewBag.Title = "TestStarting";
 }
@@ -8,7 +8,9 @@
 
 }
 <script src="~/Scripts/Timer.js"></script>
+<link type="text/css" rel="stylesheet" href="../../Content/style3.css" />
 <div id="tick"></div>
+@using KnowledgeSystem.Models.Variant;
 @using (Html.BeginForm("CheckAnswer", "TestCheckAnswer", new { testid = Model.QuestionPageInformation.TestId, questionId = Model.QuestionPageInformation.QuestionId }))
 {
     foreach (var itemm in Model.Question)
@@ -18,17 +20,20 @@
 
             @foreach (var item in Model.Variants)
             {
-                <p><input name=@Model.QuestionPageInformation.QuestionId type="radio" value='@item' onclick="@Url.Action("TestCheckAnswer", "Test")"> @item.Text</p>
+                <p>
+                    @Html.RadioButtonFor(Model => Model.UserVatiants, @item.Text) @item.Text
+                    @*<input name=@Model.QuestionPageInformation.QuestionId type="radio" value='@item' onclick="@Url.Action("TestCheckAnswer", "Test")"> @item.Text*@
+                </p>
             }
         </form>
     }
 
     <div>
-        <button class=" btn btn-success">@Html.ActionLink("Проверить", "TestCheckAnswer", new { @*testId = Model.QuestionPageInformation.TestId*@})</button>
+        <button class=" btn btn-success">@Html.ActionLink("Проверить", "TestCheckAnswer", "", new { @class = "actionlink" })</button>
     </div>
 }
 
 <div>
-    <button class=" btn btn-success">@Html.ActionLink("Завершить тест", "TestResult", new { testId = Model.QuestionPageInformation.TestId })</button>
+    <button class=" btn btn-success">@Html.ActionLink("Завершить тест", "TestResult",  "", new { @class = "actionlink" })</button>
 </div>
 <br />

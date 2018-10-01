@@ -144,21 +144,18 @@
                 connection.ConnectionString = this.connectionString;
                 connection.Open();
 
-                IDbCommand command = connection.CreateCommand();
+                var command = connection.CreateCommand();
 
                 if (this.Get(entity.Id) != null)
                 {
-                    command.CommandText = string.Format("UPDATE KnowledgeManagementSystemDB.dbo.[User] SET " +
-                    "Name = '{0}', " +
-                    "Email = '{1}', " +
-                    "Password = '{2}', " +
-                    "Role = '{3}' " +
-                    "WHERE Id = {4}",
-                    entity.Name,
-                    entity.Email,
-                    entity.Password,
-                    entity.Role,
-                    entity.Id);
+                    command.CommandText = "UPDATE KnowledgeManagementSystemDB.dbo.[User] SET " +
+                    "Name = @name, Email = @email, Password = @password, Role = @role WHERE Id = @id";
+
+                    command.Parameters.AddWithValue("@name", entity.Name);
+                    command.Parameters.AddWithValue("@email", entity.Email);
+                    command.Parameters.AddWithValue("@password", entity.Password);
+                    command.Parameters.AddWithValue("@role", entity.Role);
+                    command.Parameters.AddWithValue("@id", entity.Id);
 
                     var result = command.ExecuteNonQuery();
 
@@ -173,18 +170,26 @@
                 }
                 else
                 {
-                    command.CommandText = string.Format("INSERT INTO KnowledgeManagementSystemDB.[dbo].[User]" +
-                    "(Id," +
-                    "Name, " +
-                    "Email, " +
-                    "Password, " +
-                    "Role) " +
-                    "VALUES ('{0}', '{1}', '{2}', '{3}', {4})",
-                    entity.Id,
-                    entity.Name,
-                    entity.Email,
-                    entity.Password,
-                    entity.Role);
+                    command.CommandText = "INSERT INTO KnowledgeManagementSystemDB.[dbo].[User]" +
+                   "(Name, Email, Password, Role) Values(@name, @email, @password, @role)";
+
+                    command.Parameters.AddWithValue("@name", entity.Name);
+                    command.Parameters.AddWithValue("@email", entity.Email);
+                    command.Parameters.AddWithValue("@password", entity.Password);
+                    command.Parameters.AddWithValue("@role", entity.Role);
+
+                    //command.CommandText = string.Format(" " +
+                    //"(Name, " +
+                    //"Email, " +
+                    //"Password, " +
+                    //"Role) " +
+                    //"VALUES ('{0}', '{1}', '{2}', {3})",
+                    //entity.Name,
+                    //entity.Email,
+                    //entity.Password,
+                    //entity.Role);
+
+                    command.CommandType = CommandType.Text;
 
                     var result = command.ExecuteNonQuery();
 
@@ -226,21 +231,13 @@
 
         public int GetCount()
         {
-            string sql = string.Format("SELECT Id FROM KnowledgeManagementSystemDB.[dbo].[User]");
+            string sql = string.Format("SELECT COUNT(*) FROM KnowledgeManagementSystemDB.[dbo].[User]");
             var connection = new SqlConnection(connectionString);
             using (SqlCommand cmd = new SqlCommand(sql, connection))
             {
                 connection.Open();
-                int i = 0;
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        i++;
-                    }
-                }
-                return i;
+                
+                return (int)cmd.ExecuteScalar();
             }
         }
 

@@ -240,6 +240,74 @@
             }
         }
 
+        public Test GetByUserID(int id)
+        {
+            try
+            {
+                Test test = new Test();
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand();
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = string.Format("SELECT * FROM KnowledgeManagementSystemDB.dbo.[Test] WHERE UserId = @Id");
+                    SqlParameter IdParam = new SqlParameter("@IdParam", id);
+                    command.Parameters.Add(IdParam);
+
+                    IDataReader dr = command.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        test.Id = (int)dr["Id"];
+                        test.Name = dr["Name"].ToString();
+                        test.Duration = duration;
+                        test.Description = dr["Description"].ToString();
+                        test.UserId = (int)dr["UserId"];
+                        return test;
+                    }
+                    else return null;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
+        }
+
+        public List<Test> GetAllByUserID(int userid)
+        {
+            List<Test> AllTests = new List<Test>();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                IDbCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM KnowledgeManagementSystemDB.[dbo].[Test] WHERE UserId=@userid";
+
+                SqlParameter IdParam = new SqlParameter("@userid", userid);
+                command.Parameters.Add(IdParam);
+
+                using (IDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Test test = new Test
+                        {
+                            Id = (int)dr["Id"],
+                            Name = dr["Name"].ToString(),
+                            Duration = duration,
+                            UserId = (int)dr["UserId"],
+                            Description = dr["Description"].ToString()
+                        };
+                        //test.Questions = qr.Get((int)dr["TestId"]); //Список вопросов
+
+                        AllTests.Add(test);
+                    }
+                }
+                return AllTests;
+            }
+        }
+
         public Test Get(string name)
         {
             throw new NotImplementedException();

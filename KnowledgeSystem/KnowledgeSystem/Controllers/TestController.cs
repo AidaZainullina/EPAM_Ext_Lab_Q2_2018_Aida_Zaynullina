@@ -26,15 +26,17 @@ namespace KnowledgeSystem.Controllers
         
         public ActionResult Index(int page = 1)
         {
+
             ViewBag.User = User.Identity.Name;
             int pageSize = testRepository.GetCount();
-            var testsPerPages = testRepository.GetAll();
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<KnowledgeSystemDAL.Models.Test, KnowledgeSystem.Models.Test.IndexTestViewModel>());
+            var testsPerPages = testRepository.GetAllByUserID((int)Session["UserID"]);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<KnowledgeSystemDAL.Models.Test, IndexTestViewModel>());
             var mapper = config.CreateMapper();
-            var tests = mapper.Map<List<KnowledgeSystemDAL.Models.Test>, IEnumerable<KnowledgeSystem.Models.Test.TestViewModel>>(testsPerPages);
+            var tests = mapper.Map<List<KnowledgeSystemDAL.Models.Test>, IEnumerable<TestViewModel>>(testsPerPages);
 
             var pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = testRepository.GetCount() };
             var ivm = new IndexViewModel { PageInfo = pageInfo, Tests = tests };
+  
             return View(ivm);
         }
 
@@ -71,9 +73,11 @@ namespace KnowledgeSystem.Controllers
 
                 variants.Add(variant);
             }
-
+            variants.Count();
             var pageInfo = new QuestionPageInformation { TestId = testId, QuestionId = questionId, TotalPages = questionRepository.GetAllQuestionByTestId(testId).Count };
             var startingQuestionViewModel = new StartingTestQuestionViewModel { QuestionPageInformation = pageInfo, Question = questions, Variants = variants };
+
+            
             return View(startingQuestionViewModel);
         }
         

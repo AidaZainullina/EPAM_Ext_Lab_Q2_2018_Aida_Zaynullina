@@ -1,0 +1,92 @@
+body { 
+    margin:0;
+	padding:0;
+	background-color:#1cc3b9;
+}
+
+.modal-content{
+    text-align: center;
+    background-color: #f2a9a0;
+    padding: 30px;
+    border-radius: 7px;
+}
+
+.modal-header h5{
+	font-size:30px;
+	font-family: 'Monotype Corsiva', cursive;
+	color:white;
+	text-align: center;
+}
+
+table{
+	border: 1px solid white;
+}
+
+button.a {
+	background: -moz-linear-gradient(#D8BFD8, #EBFFFF);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#D8BFD8), to(#EBFFFF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D8BFD8', endColorstr='#EBFFFF');
+    padding: 3px 7px;
+    color: #191970;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #666;
+}
+
+button.close{
+	background: -moz-linear-gradient(#D8BFD8, #EBFFFF);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#D8BFD8), to(#EBFFFF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D8BFD8', endColorstr='#EBFFFF');
+    padding: 3px 7px;
+    color: #black;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #666;
+	
+}
+
+button.b{
+	background: -moz-linear-gradient(#AFEEEE, #EBFFFF);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#AFEEEE), to(#EBFFFF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#AFEEEE', endColorstr='#EBFFFF');
+    padding: 3px 7px;
+    color: #white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #666;
+}
+
+.modal-body input[type="text"] {
+	color:black; 
+	text-align:left-side;
+	font-family: 'Monotype Corsiva', cursive;
+	font-size:20px;
+	background-color:#f2a9a0;
+}
+
+.modal-body input[type="phone"] {
+	color:black; 
+	text-align:left-side;
+	font-family: 'Monotype Corsiva', cursive;
+	font-size:20px;
+	background-color:#f2a9a0;
+}
+
+.modal-body input[type="email"] {
+	color:black; 
+	text-align:left-side;
+	font-family: 'Monotype Corsiva', cursive;
+	font-size:20px;
+	background-color:#f2a9a0;
+}
+
+.modal-body input[type="number"] {
+	color:black; 
+	text-align:left-side;
+	font-family: 'Monotype Corsiva', cursive;
+	font-size:20px;
+	background-color:#f2a9a0;
+}

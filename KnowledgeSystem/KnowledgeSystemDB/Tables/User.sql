@@ -1,8 +1,9 @@
 ﻿CREATE TABLE [dbo].[User]
 (
 	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
-    [Name] NCHAR(100) NOT NULL, 
-    [Password] NCHAR(100) NOT NULL, 
-    [Role] INT NOT NULL FOREIGN KEY([Id]) REFERENCES Role (Id),
-    [Email] NCHAR(100) NOT NULL
+    [Name] NVARCHAR(100) NOT NULL, 
+    [Password] NVARCHAR(100) NOT NULL, 
+    [Role] int NOT NULL,
+		constraint [FK_User_Role] FOREIGN KEY([Role]) REFERENCES Role (Id),
+    [Email] NVARCHAR(100) NOT NULL
 )
